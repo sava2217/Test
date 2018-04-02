@@ -1,18 +1,13 @@
-
 package com.store.entity;
-
-import org.hibernate.annotations.Fetch;
 
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
-
 @Entity
-public class Clothes extends AbstractEntity {
+public class Shoes extends AbstractEntity {
 
     private BigDecimal price;
-
 
     @ManyToOne(fetch = FetchType.LAZY)
     private Color color;
@@ -23,14 +18,11 @@ public class Clothes extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private  Season season;
     @ManyToOne(fetch = FetchType.LAZY)
-    private ClothesMaterial clothesMaterials;
+    private ShoesMaterial shoesMaterial;
     @ManyToOne(fetch = FetchType.LAZY)
-    private ClothesSize clothesSize;
+    private ShoesSize shoesSize;
 
-
-
-    public Clothes() {
-
+    private Shoes() {
 
     }
 
@@ -41,7 +33,6 @@ public class Clothes extends AbstractEntity {
     public void setPrice(BigDecimal price) {
         this.price = price;
     }
-
 
     public Color getColor() {
         return color;
@@ -75,19 +66,19 @@ public class Clothes extends AbstractEntity {
         this.season = season;
     }
 
-    public ClothesMaterial getClothesMaterials() {
-        return clothesMaterials;
+    public ShoesMaterial getShoesMaterial() {
+        return shoesMaterial;
     }
 
-    public void setClothesMaterials(ClothesMaterial clothesMaterials) {
-        this.clothesMaterials = clothesMaterials;
+    public void setShoesMaterial(ShoesMaterial shoesMaterial) {
+        this.shoesMaterial = shoesMaterial;
     }
 
-    public ClothesSize getClothesSize() {
-        return clothesSize;
+    public ShoesSize getShoesSize() {
+        return shoesSize;
     }
 
-    public void setClothesSize(ClothesSize clothesSize) {
-        this.clothesSize = clothesSize;
+    public void setShoesSize(ShoesSize shoesSize) {
+        this.shoesSize = shoesSize;
     }
 }

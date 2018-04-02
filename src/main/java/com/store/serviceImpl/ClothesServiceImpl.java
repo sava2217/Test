@@ -33,7 +33,7 @@ public class ClothesServiceImpl implements ClothesService {
     }
 
     @Override
-    public Clothes save(Clothes accessories) {
-        return clothesRepository.save(accessories);
+    public Clothes save(Clothes clothes) {
+        return clothesRepository.save(clothes);
     }
 }

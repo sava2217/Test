@@ -1,13 +1,12 @@
-
 package com.store.serviceImpl;
 
-        import com.store.entity.ClothesMaterial;
-        import com.store.repository.ClothesMaterialRepository;
-        import com.store.service.ClothesMaterialService;
-        import org.springframework.beans.factory.annotation.Autowired;
-        import org.springframework.stereotype.Service;
+import com.store.entity.ClothesMaterial;
+import com.store.repository.ClothesMaterialRepository;
+import com.store.service.ClothesMaterialService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-        import java.util.Optional;
+import java.util.Optional;
 
 @Service
 public class ClothesMaterialServiceImpl implements ClothesMaterialService {
@@ -26,8 +25,8 @@ public class ClothesMaterialServiceImpl implements ClothesMaterialService {
         return clothesMaterialRepository.findById(id);
     }
     @Override
-    public ClothesMaterial save(ClothesMaterial brand){
-        return  clothesMaterialRepository.save(brand);
+    public ClothesMaterial save(ClothesMaterial clothesMaterial){
+        return  clothesMaterialRepository.save(clothesMaterial);
     }
     @Override
     public void delete(Long id){

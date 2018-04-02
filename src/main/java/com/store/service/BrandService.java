@@ -1,8 +1,8 @@
 package com.store.service;
 
-        import com.store.entity.Brand;
+import com.store.entity.Brand;
 
-        import java.util.Optional;
+import java.util.Optional;
 
 public interface BrandService  {
     Iterable<Brand> findAll();

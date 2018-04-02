@@ -7,7 +7,7 @@ public class Season extends AbstractEntity {
     private String dName;
 
     public Season() {
-    }
+}
 
     public Season(String dName) {
         this.dName = dName;
