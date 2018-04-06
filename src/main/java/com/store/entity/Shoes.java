@@ -22,7 +22,7 @@ public class Shoes extends AbstractEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     private ShoesSize shoesSize;
 
-    private Shoes() {
+    public Shoes() {
 
     }
 

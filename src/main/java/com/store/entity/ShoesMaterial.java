@@ -6,24 +6,24 @@ import java.util.ArrayList;
 import java.util.List;
 @Entity
 public class ShoesMaterial extends AbstractEntity {
-    private String smname;
+    private String smName;
     @OneToMany(mappedBy = "shoesMaterial")
     private List<Shoes> shoesList = new ArrayList<>();
 
-    ShoesMaterial() {
+    public ShoesMaterial() {
 
     }
     public ShoesMaterial (String smname, List<Shoes> shoesList){
-        this.smname = smname;
+        this.smName = smname;
         this.shoesList = shoesList;
     }
 
     public String getSmname() {
-        return smname;
+        return smName;
     }
 
     public void setSmname(String smname) {
-        this.smname = smname;
+        this.smName = smname;
     }
 
     public List<Shoes> getShoesList() {

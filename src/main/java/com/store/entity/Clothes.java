@@ -28,6 +28,15 @@ public class Clothes extends AbstractEntity {
     private ClothesSize clothesSize;
 
 
+    public Clothes(BigDecimal price, Color color, Brand brand, Gender gender, Season season, ClothesMaterial clothesMaterials, ClothesSize clothesSize) {
+        this.price = price;
+        this.color = color;
+        this.brand = brand;
+        this.gender = gender;
+        this.season = season;
+        this.clothesMaterials = clothesMaterials;
+        this.clothesSize = clothesSize;
+    }
 
     public Clothes() {
 

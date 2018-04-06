@@ -4,9 +4,10 @@ import com.store.entity.ShoesMaterial;
 import com.store.repository.ShoesMaterialRepository;
 import com.store.service.ShoesMaterialService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-
+@Service
 public class ShoesMaterialServiceImpl implements ShoesMaterialService {
     private final ShoesMaterialRepository shoesMaterialRepository;
     @Autowired

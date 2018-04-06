@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login Page</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <p th:if="${loginError}" class="error">Wrong email or password</p>
+    <form th:action="@{/login}" method="POST" class="form-signin">
+        <h3 class="form-signin-heading" th:text="Welcome"></h3>
+        <br/>
+        <input type="text" id="email" name="email" th:placeholder="Email"
+               class="form-control" title=""/> <br/>
+        <input type="password" th:placeholder="Password"
+               id="password" name="password" class="form-control" title=""/>
+        <br/>
+        <div align="center" th:if="${param.error}">
+            <p style="font-size: 20px; color: #FF1C19;">Email or Password invalid, please verify</p>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" name="Submit" value="login" type="Submit"
+                th:text="Login"></button>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
-@Service
-public class ColorServiceImpl implements ColorService{
 
-    private final  ColorRepository colorRepository;
+@Service
+public class ColorServiceImpl implements ColorService {
+
+    private final ColorRepository colorRepository;
+
     @Autowired
     public ColorServiceImpl(ColorRepository colorRepository) {
         this.colorRepository = colorRepository;

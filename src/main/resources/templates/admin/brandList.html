@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Brand</title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div>
+        <h1>Brand</h1>
+        <p>
+            <a href="/admin/brand/brandEdit" th:href="@{/admin/brand/brandEdit}">Create</a>
+        </p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="brand : ${brandList}">
+                <td th:text="${brand.id}">1</td>
+                <td th:text="${brand.cName}">Test</td>
+                <td>
+                    <a href="/admin/brand/brandEdit/" th:href="@{/admin/brand/brandEdit/__${brand.id}__}">Edit</a>
+                    <a href="/admin/brand/brandDelete/"
+                       th:href="@{/admin/brand/brandDelete/__${brand.id}__}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

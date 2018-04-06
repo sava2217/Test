@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Furniture Form</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <h1>Furniture</h1>
+    <form class="form-group" action="/admin/clothes/clothesEdit" th:action="@{/admin/clothes/clothesEdit}"
+          method="post" enctype="multipart/form-data">
+        <input th:type="hidden" name="id" th:field="${clothes.id}" title=""/>
+        <div class="form-group">
+            <!--sldfasdjlgsdalkfadsga-->
+            <label>Clothes</label>
+            <div class="form-group">
+                <label>Color</label>
+                <div>
+                    <select th:field="*{clothes.color}">
+                        <option value=""></option>
+                        <option th:each="colors : ${color}"
+                                th:value="${colors.id}"
+                                th:text="${colors.cName}"></option>
+                    </select>
+                </div>
+            </div>
+            <!--sldfasdjlgsdalkfadsga-->
+            <div class="form-group">
+                <label>Brand</label>
+                <div>
+                    <select th:field="*{clothes.brand}">
+                        <option value=""></option>
+                        <option th:each="brand : ${brand}"
+                                th:value="${brand.id}"
+                                th:text="${brand.bName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ClothesSize</label>
+                <div>
+                    <select th:field="*{clothes.clothesSize}">
+                        <option value=""></option>
+                        <option th:each="clothesSize : ${clothesSize}"
+                                th:value="${clothesSize.id}"
+                                th:text="${clothesSize.csName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ClothesMaterial</label>
+                <div>
+                    <select th:field="*{clothes.clothesMaterials}">
+                        <option value=""></option>
+                        <option th:each="clothesMaterials : ${clothesMaterial}"
+                                th:value="${clothesMaterials.id}"
+                                th:text="${clothesMaterials.bName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div>
+                    <select th:field="*{clothes.gender}">
+                        <option value=""></option>
+                        <option th:each="genders : ${gender}"
+                                th:value="${genders.id}"
+                                th:text="${genders.gName}"></option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Season</label>
+                <div>
+                    <select th:field="*{clothes.season}">
+                        <option value=""></option>
+                        <option th:each="seasons : ${season}"
+                                th:value="${seasons.id}"
+                                th:text="${seasons.dName}"></option>
+                    </select>
+                </div>
+            </div>
+            <label>Description</label>
+            <input type="text" class="form-control" th:field="${clothes.price}" title=""/>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="#" th:href="@{/admin/clothes/}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

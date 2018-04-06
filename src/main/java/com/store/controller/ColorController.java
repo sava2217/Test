@@ -21,7 +21,7 @@ public class ColorController {
         this.colorService = colorService;
     }
 
-    @RequestMapping(value = "/admin/color" ,method = RequestMethod.GET)
+    @RequestMapping(value = "/admin/color",method = RequestMethod.GET)
     public String show(Model model) {
         model.addAttribute("colorsList", colorService.findAll());
         return "/admin/colorList";

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Shoes Form</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <h1>Shoes</h1>
+    <form class="form-group" action="/admin/shoes/shoesEdit" th:action="@{/admin/shoes/shoesEdit}"
+          method="post" enctype="multipart/form-data">
+        <input th:type="hidden" name="id" th:field="${shoes.id}" title=""/>
+        <div class="form-group">
+            <label>Shoes</label>
+            <div class="form-group">
+
+                <label>Color</label>
+                <div>
+                    <select th:field="*{shoes.color}">
+                        <option value=""></option>
+                        <option th:each="colors : ${color}"
+                                th:value="${colors.id}"
+                                th:text="${colors.name}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ShoesMaterial</label>
+                <div>
+                    <select th:field="*{shoes.shoesMaterial}">
+                        <option value=""></option>
+                        <option th:each="shoesMaterial : ${shoesMaterial}"
+                                th:value="${shoesMaterial.id}"
+                                th:text="${shoesMaterial.cName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>ShoesSize</label>
+                <div>
+                    <select th:field="*{shoes.shoesSize}">
+                        <option value=""></option>
+                        <option th:each="shoesSize : ${shoesSize}"
+                                th:value="${shoesSize.id}"
+                                th:text="${shoesSize.smName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Season</label>
+                <div>
+                    <select th:field="*{shoes.season}">
+                        <option value=""></option>
+                        <option th:each="season : ${season}"
+                                th:value="${season.id}"
+                                th:text="${season.dName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Brand</label>
+                <div>
+                    <select th:field="*{shoes.brand}">
+                        <option value=""></option>
+                        <option th:each="brand : ${brand}"
+                                th:value="${brand.id}"
+                                th:text="${brand.bName}"></option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Gender</label>
+                <div>
+                    <select th:field="*{shoes.gender}">
+                        <option value=""></option>
+                        <option th:each="gender : ${gender}"
+                                th:value="${gender.id}"
+                                th:text="${gender.gName}"></option>
+                    </select>
+                </div>
+            </div>
+
+
+            <label>Description</label>
+            <input type="text" class="form-control" th:field="${shoes.description}" title=""/>
+        </div>
+        <button type="submit" class="btn btn-primary">Save</button>
+        <a href="#" th:href="@{/admin/shoes/}" class="btn btn-danger" role="button">Cancel</a>
+    </form>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

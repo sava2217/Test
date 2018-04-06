@@ -1,0 +1,53 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>ShoesSize</title>
+    <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <div>
+        <h1>ShoesSize</h1>
+        <p>
+            <a href="/admin/shoesSize/shoesSizeEdit" th:href="@{/admin/shoesSize/shoesSizeEdit}">Create</a>
+        </p>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="shoesSize : ${shoesSizeList}">
+                <td th:text="${shoesSizel.id}">1</td>
+                <td th:text="${shoesSize.cName}">Test</td>
+                <td>
+                    <a href="/admin/shoesSize/shoesSizeEdit/" th:href="@{/admin/shoesSize/shoesSizeEdit/__${shoesSize.id}__}">Edit</a>
+                    <a href="/admin/shoesSize/shoesSizeDelete/"
+                       th:href="@{/admin/shoesSize/shoesSizeDelete/__${shoesSize.id}__}">Delete</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

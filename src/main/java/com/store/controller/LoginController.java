@@ -67,31 +67,31 @@ public class LoginController {
         } else {
             userService.saveUser(user);
             modelAndView.addObject("successMessage", "User has been registered successfully");
-            modelAndView.addObject("user", new User());
+            modelAndView.addObject("templates/user", new User());
             modelAndView.setViewName("registration");
         }
         return modelAndView;
     }
 
-    @RequestMapping(value = "/admin/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/templates/admin/home", method = RequestMethod.GET)
     public ModelAndView adminHome() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
-        modelAndView.setViewName("/admin/home");
+        modelAndView.setViewName("/templates/admin/home");
         return modelAndView;
     }
 
-    @RequestMapping(value = "/user/home", method = RequestMethod.GET)
+    @RequestMapping(value = "/templates/user/home", method = RequestMethod.GET)
     public ModelAndView userHome() {
         ModelAndView modelAndView = new ModelAndView();
         Authentication auth = SecurityContextHolder.getContext().getAuthentication();
         User user = userService.findUserByEmail(auth.getName());
         modelAndView.addObject("userName", "Welcome " + user.getName() + " " + user.getLastName() + " (" + user.getEmail() + ")");
         modelAndView.addObject("userMessage", "Content Available for Users");
-        modelAndView.setViewName("/user/home");
+        modelAndView.setViewName("/templates/user/home");
         return modelAndView;
     }
 }
