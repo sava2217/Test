@@ -46,14 +46,22 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().and()
                 .authorizeRequests()
-                .antMatchers("/", "/home", "/registration").permitAll()
+                .antMatchers("/**", "/home", "/registration").permitAll()
                 .antMatchers("/user/**").hasAnyAuthority("USER", "ADMIN")
                 .antMatchers("/admin/**").hasAuthority("ADMIN")
+
+                .anyRequest().permitAll()
                 .and()
+                .exceptionHandling().accessDeniedPage("/403").and()
                 .formLogin()
                 .loginPage("/login").failureUrl("/login?error")
                 .usernameParameter("email")
                 .passwordParameter("password")
+                .and()
+                .rememberMe()
+                .rememberMeParameter("rememberMe")
+                .key("my super secret key")
+                .rememberMeCookieName("Secret_cookie")
                 .and().logout()
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/");
@@ -63,7 +71,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(WebSecurity web) throws Exception {
         web
                 .ignoring()
-                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/images/**");
+                .antMatchers("/resources/**", "/static/**", "/css/**", "/js/**", "/static/images/**");
     }
 
 

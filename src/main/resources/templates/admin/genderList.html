@@ -35,13 +35,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="gender : ${genderList}">
-                <td th:text="${gender.id}">1</td>
-                <td th:text="${gender.cName}">Test</td>
+            <tr th:each="genders : ${genderList}">
+                <td th:text="${genders.id}">1</td>
+                <td th:text="${genders.name}">Test</td>
                 <td>
-                    <a href="/admin/gender/genderEdit/" th:href="@{/admin/gender/genderEdit/__${gender.id}__}">Edit</a>
+                    <a href="/admin/gender/genderEdit/" th:href="@{/admin/gender/genderEdit/__${genders.id}__}">Edit</a>
                     <a href="/admin/gender/genderDelete/"
-                       th:href="@{/admin/gender/genderDelete/__${gender.id}__}">Delete</a>
+                       th:href="@{/admin/gender/genderDelete/__${genders.id}__}">Delete</a>
                 </td>
             </tr>
             </tbody>

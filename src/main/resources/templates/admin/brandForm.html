@@ -26,7 +26,7 @@
         <input th:type="hidden" name="id" th:field="${brand.id}" title=""/>
         <div class="form-group">
             <label for="title">brand</label>
-            <input type="text" class="form-control" id="title" th:field="${brand.cName}"/>
+            <input type="text" class="form-control" id="title" th:field="${brand.name}"/>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="#" th:href="@{/admin/brand/}" class="btn btn-danger" role="button">Cancel</a>

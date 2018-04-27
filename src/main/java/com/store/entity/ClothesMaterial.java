@@ -1,39 +1,56 @@
-
 package com.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class ClothesMaterial extends AbstractEntity{
-    private String bName;
-    @OneToMany(mappedBy = "clothesMaterials")
-    private List<Clothes> clothesList = new ArrayList<>();
+public class ClothesMaterial {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
+    @OneToMany(mappedBy = "clothesMaterial")
+    private List<Clothes> clothes = new ArrayList<>();
 
     public ClothesMaterial() {
-
     }
 
-    public ClothesMaterial(String bName, List<Clothes> clothesList) {
-        this.bName = bName;
-        this.clothesList = clothesList;
+    public ClothesMaterial(String name, List<Clothes> clothes) {
+        this.name = name;
+        this.clothes = clothes;
     }
 
-    public String getbName() {
-        return bName;
+    public Long getId() {
+        return id;
     }
 
-    public void setbName(String bName) {
-        this.bName = bName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<Clothes> getClothesList() {
-        return clothesList;
+    public String getName() {
+        return name;
     }
 
-    public void setClothesList(List<Clothes> clothesList) {
-        this.clothesList = clothesList;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Clothes> getClothes() {
+        return clothes;
+    }
+
+    public void setClothes(List<Clothes> clothes) {
+        this.clothes = clothes;
+    }
+    @Override
+    public String toString() {
+        return "ClothesMaterial{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

@@ -45,9 +45,9 @@
                 <div>
                     <select th:field="*{shoes.shoesMaterial}">
                         <option value=""></option>
-                        <option th:each="shoesMaterial : ${shoesMaterial}"
-                                th:value="${shoesMaterial.id}"
-                                th:text="${shoesMaterial.cName}"></option>
+                        <option th:each="shoesMaterials : ${shoesMaterial}"
+                                th:value="${shoesMaterials.id}"
+                                th:text="${shoesMaterials.name}"></option>
                     </select>
                 </div>
             </div>
@@ -57,9 +57,9 @@
                 <div>
                     <select th:field="*{shoes.shoesSize}">
                         <option value=""></option>
-                        <option th:each="shoesSize : ${shoesSize}"
-                                th:value="${shoesSize.id}"
-                                th:text="${shoesSize.smName}"></option>
+                        <option th:each="shoesSizes : ${shoesSize}"
+                                th:value="${shoesSizes.id}"
+                                th:text="${shoesSizes.name}"></option>
                     </select>
                 </div>
             </div>
@@ -69,9 +69,9 @@
                 <div>
                     <select th:field="*{shoes.season}">
                         <option value=""></option>
-                        <option th:each="season : ${season}"
-                                th:value="${season.id}"
-                                th:text="${season.dName}"></option>
+                        <option th:each="seasons : ${season}"
+                                th:value="${seasons.id}"
+                                th:text="${seasons.name}"></option>
                     </select>
                 </div>
             </div>
@@ -81,9 +81,9 @@
                 <div>
                     <select th:field="*{shoes.brand}">
                         <option value=""></option>
-                        <option th:each="brand : ${brand}"
-                                th:value="${brand.id}"
-                                th:text="${brand.bName}"></option>
+                        <option th:each="brands : ${brand}"
+                                th:value="${brands.id}"
+                                th:text="${brands.name}"></option>
                     </select>
                 </div>
             </div>
@@ -93,9 +93,9 @@
                 <div>
                     <select th:field="*{shoes.gender}">
                         <option value=""></option>
-                        <option th:each="gender : ${gender}"
-                                th:value="${gender.id}"
-                                th:text="${gender.gName}"></option>
+                        <option th:each="genders : ${gender}"
+                                th:value="${genders.id}"
+                                th:text="${genders.name}"></option>
                     </select>
                 </div>
             </div>
@@ -103,11 +103,15 @@
 
             <label>Description</label>
             <input type="text" class="form-control" th:field="${shoes.description}" title=""/>
+            <label>Price</label>
+            <input type="number" class="form-control" th:field="${shoes.price}" title=""/>
+            <label>Photo</label>
+            <input type="file" name="file" value="upload"/>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="#" th:href="@{/admin/shoes/}" class="btn btn-danger" role="button">Cancel</a>
     </form>
 </div>
-<div th:replace="fragments/footer :: footer"></div>
+<div th:replace="fragments/shoes :: footer"></div>
 </body>
 </html>

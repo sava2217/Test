@@ -35,13 +35,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="brand : ${brandList}">
-                <td th:text="${brand.id}">1</td>
-                <td th:text="${brand.cName}">Test</td>
+            <tr th:each="brands : ${brandList}">
+                <td th:text="${brands.id}">1</td>
+                <td th:text="${brands.name}">Test</td>
                 <td>
-                    <a href="/admin/brand/brandEdit/" th:href="@{/admin/brand/brandEdit/__${brand.id}__}">Edit</a>
+                    <a href="/admin/brand/brandEdit/" th:href="@{/admin/brand/brandEdit/__${brands.id}__}">Edit</a>
                     <a href="/admin/brand/brandDelete/"
-                       th:href="@{/admin/brand/brandDelete/__${brand.id}__}">Delete</a>
+                       th:href="@{/admin/brand/brandDelete/__${brands.id}__}">Delete</a>
                 </td>
             </tr>
             </tbody>

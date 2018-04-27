@@ -24,7 +24,7 @@
     <div>
         <h1>ClothesSize</h1>
         <p>
-            <a href="/admin/clothesSizeList/clothesSizeListEdit" th:href="@{/admin/clothesSizeList/clothesSizeListEdit}">Create</a>
+            <a href="/admin/clothesSize/clothesSizeEdit" th:href="@{/admin/clothesSize/clothesSizeEdit}">Create</a>
         </p>
         <table class="table">
             <thead>
@@ -35,13 +35,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="clothesSizeList : ${clothesSizeListList}">
-                <td th:text="${clothesSizeList.id}">1</td>
-                <td th:text="${clothesSizeList.cName}">Test</td>
+            <tr th:each="clothesSizes : ${clothesSizeList}">
+                <td th:text="${clothesSizes.id}">1</td>
+                <td th:text="${clothesSizes.name}">Test</td>
                 <td>
-                    <a href="/admin/clothesSizeList/clothesSizeListEdit/" th:href="@{/admin/clothesSizeList/clothesSizeListEdit/__${clothesSizeList.id}__}">Edit</a>
-                    <a href="/admin/clothesSizeList/clothesSizeListDelete/"
-                       th:href="@{/admin/clothesSizeList/clothesSizeListDelete/__${clothesSizeList.id}__}">Delete</a>
+                    <a href="/admin/clothesSize/clothesSizeEdit/" th:href="@{/admin/clothesSize/clothesSizeEdit/__${clothesSizes.id}__}">Edit</a>
+                    <a href="/admin/clothesSize/clothesSizeDelete/"
+                       th:href="@{/admin/clothesSize/clothesSizeDelete/__${clothesSizes.id}__}">Delete</a>
                 </td>
             </tr>
             </tbody>

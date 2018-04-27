@@ -1,60 +1,68 @@
 package com.store.controller;
 
 import com.store.entity.Clothes;
+import com.store.filter.ClothesFilter;
 import com.store.service.*;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.Valid;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @Controller
+@RequestMapping("/admin/clothes")
 public class ClothesController {
 
     private final ClothesService clothesService;
 
     private final ColorService colorService;
-
     private final BrandService brandService;
-
-    private final ClothesSizeService clothesSizeService;
-    private final ClothesMaterialService clothesMaterialService;
     private final GenderService genderService;
     private final SeasonService seasonService;
+    private final ClothesMaterialService clothesMaterialService;
+    private final ClothesSizeService clothesSizeService;
 
-    @Autowired
-    public ClothesController(ClothesService clothesService, ColorService colorService, BrandService brandService, ClothesSizeService clothesSizeService, ClothesMaterialService clothesMaterialService, GenderService genderService, SeasonService seasonService) {
+    public ClothesController(ClothesService clothesService, ColorService colorService, BrandService brandService, GenderService genderService, SeasonService seasonService, ClothesMaterialService clothesMaterialService, ClothesSizeService clothesSizeService) {
         this.clothesService = clothesService;
         this.colorService = colorService;
         this.brandService = brandService;
-        this.clothesSizeService = clothesSizeService;
-        this.clothesMaterialService = clothesMaterialService;
         this.genderService = genderService;
         this.seasonService = seasonService;
+        this.clothesMaterialService = clothesMaterialService;
+        this.clothesSizeService = clothesSizeService;
     }
 
+    public ClothesService getClothesService() {
+        return clothesService;
+    }
 
-
-
-    @RequestMapping(value = "/admin/clothes", method = RequestMethod.GET)
-    public String show(Model model) {
-        model.addAttribute("clothesList", clothesService.findAll());
-        model.addAttribute("color", colorService.findAll());
-        model.addAttribute("brand", brandService.findAll());
-        model.addAttribute("clothesSize", clothesSizeService.findAll());
-        model.addAttribute("clothesMaterial", clothesMaterialService.findAll());
-        model.addAttribute("gender", genderService.findAll());
-        model.addAttribute("season", seasonService.findAll());
+    @RequestMapping(method = RequestMethod.GET)
+    public String show(Model model, @PageableDefault Pageable pageable, @ModelAttribute("filter") ClothesFilter filter) {
+        model.addAttribute("clothesList", clothesService.findAll(pageable, filter));
+        model.addAttribute("colorList", colorService.findAll());
+        model.addAttribute("brandList", brandService.findAll());
+        model.addAttribute("genderList", genderService.findAll());
+        model.addAttribute("seasonList", seasonService.findAll());
+        model.addAttribute("clothesMaterialList", clothesMaterialService.findAll());
+        model.addAttribute("clothesSizeList", clothesSizeService.findAll());
         return "/admin/clothesList";
     }
 
-    @RequestMapping(value = {"/admin/clothes/clothesEdit", "/admin/clothes/clothesEdit/{id}"}, method = RequestMethod.GET)
+    @RequestMapping(value = {"/clothesEdit", "/clothesEdit/{id}"}, method = RequestMethod.GET)
     public String saveAndEditForm(Model model, @PathVariable(required = false, name = "id") Long id) {
-        model.addAttribute("color", colorService.findAll());
+
+        model.addAttribute("colorList", colorService.findAll());
+        model.addAttribute("brandList", brandService.findAll());
+        model.addAttribute("genderList", genderService.findAll());
+        model.addAttribute("seasonList", seasonService.findAll());
+        model.addAttribute("clothesMaterialList", clothesMaterialService.findAll());
+        model.addAttribute("clothesSizeList", clothesSizeService.findAll());
         if (null != id) {
             model.addAttribute("clothes", clothesService.findOne(id));
         } else {
@@ -63,19 +71,28 @@ public class ClothesController {
         return "/admin/clothesForm";
     }
 
-    @RequestMapping(value = "/admin/clothes/clothesEdit", method = RequestMethod.POST)
-    public String saveForm(Model model, @Valid Clothes clothes, BindingResult bindingResult) {
+    @RequestMapping(value = "/clothesEdit", method = RequestMethod.POST)
+    public String saveForm(Model model, Clothes clothes, @RequestParam("file") MultipartFile file) {
+        try {
+            byte[] bytes = file.getBytes();
+            /*"E:/java/spring-angular2-tasks-master/src/main/frontend/src/assets/images/products/"*/
+            Path path = Paths.get("C:\\projekt\\WebProject-master\\pngFiles\\" + file.getOriginalFilename());
+            System.out.println(path);
+            Files.write(path, bytes);
+            clothes.setPath(String.valueOf(path));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         clothesService.save(clothes);
         model.addAttribute("clothesList", clothesService.findAll());
         return "redirect:/admin/clothes";
     }
 
-    @RequestMapping(value = "/admin/clothes/clothesDelete/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/clothesDelete/{id}", method = RequestMethod.GET)
     public String delete(Model model, @PathVariable(required = true, name = "id") Long id) {
         clothesService.delete(id);
         model.addAttribute("clothesList", clothesService.findAll());
         return "redirect:/admin/clothes";
     }
-
 
 }

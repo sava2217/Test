@@ -26,7 +26,7 @@
         <input th:type="hidden" name="id" th:field="${shoesMaterial.id}" title=""/>
         <div class="form-group">
             <label for="title">ShoesMaterial</label>
-            <input type="text" class="form-control" id="title" th:field="${shoesMaterial.cName}"/>
+            <input type="text" class="form-control" id="title" th:field="${shoesMaterial.name}"/>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="#" th:href="@{/admin/shoesMaterial/}" class="btn btn-danger" role="button">Cancel</a>

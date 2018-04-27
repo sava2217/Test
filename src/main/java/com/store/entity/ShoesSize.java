@@ -1,37 +1,55 @@
 package com.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class ShoesSize  extends AbstractEntity{
-    private String ssname;
+public class ShoesSize {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
     @OneToMany(mappedBy = "shoesSize")
-    private List<Shoes> shoesList = new ArrayList<>();
+    private List<Shoes> shoes = new ArrayList<>();
 
     public ShoesSize() {
     }
 
-    public ShoesSize(String ssname, List<Shoes> shoesList) {
-        this.ssname = ssname;
-        this.shoesList = shoesList;
+    public ShoesSize(String name, List<Shoes> shoes) {
+        this.name = name;
+        this.shoes = shoes;
     }
 
-    public String getSsname() {
-        return ssname;
+    public Long getId() {
+        return id;
     }
 
-    public void setSsname(String ssname) {
-        this.ssname = ssname;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<Shoes> getShoesList() {
-        return shoesList;
+    public String getName() {
+        return name;
     }
 
-    public void setShoesList(List<Shoes> shoesList) {
-        this.shoesList = shoesList;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Shoes> getShoes() {
+        return shoes;
+    }
+
+    public void setShoes(List<Shoes> shoes) {
+        this.shoes = shoes;
+    }
+    public String toString() {
+        return "ShoesSize{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

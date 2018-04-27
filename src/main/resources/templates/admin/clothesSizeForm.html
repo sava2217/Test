@@ -21,12 +21,12 @@
 <br>
 <br>
 <div class="container">
-    <h1>Colors</h1>
+    <h1>ClothesSize</h1>
     <form class="form-group" action="/admin/clothesSize/clothesSizeEdit" th:action="@{/admin/clothesSize/clothesSizeEdit}" method="post">
         <input th:type="hidden" name="id" th:field="${clothesSize.id}" title=""/>
         <div class="form-group">
             <label for="title">clothesSize</label>
-            <input type="text" class="form-control" id="title" th:field="${clothesSize.cName}"/>
+            <input type="text" class="form-control" id="title" th:field="${clothesSize.name}"/>
         </div>
         <button type="submit" class="btn btn-primary">Save</button>
         <a href="#" th:href="@{/admin/clothesSize/}" class="btn btn-danger" role="button">Cancel</a>

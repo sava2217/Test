@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Cart</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Color</th>
+            <th>Brand</th>
+            <th>Gender</th>
+            <th>Season</th>
+            <th>Clothes Material</th>
+            <th>Clothes Size</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Photo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="clothesInCard : ${shoppingCart.clothesInCards}">
+
+            <td th:text="${clothesInCard?.clothes?.color?.name}"></td>
+            <td th:text="${clothesInCard?.clothes?.brand?.name}"></td>
+            <td th:text="${clothesInCard?.clothes?.gender?.name}"></td>
+            <td th:text="${clothesInCard?.clothes?.season?.name}"></td>
+            <td th:text="${clothesInCard?.clothes?.clothesMaterial?.name}"></td>
+            <td th:text="${clothesInCard?.clothes?.clothesSize?.name}"></td>
+            <td><img th:src="@{${clothesInCard.clothes.path}}" th:height="110px" th:width="110px" alt=""></td>
+            <td th:text="${clothesInCard?.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+<div class="container">
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Color</th>
+            <th>Brand</th>
+            <th>Gender</th>
+            <th>Season</th>
+            <th>Shoes Material</th>
+            <th>Shoes Size</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Photo</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="shoesInCard : ${shoppingCart.shoesInCards}">
+
+            <td th:text="${shoesInCard?.shoes?.color?.name}"></td>
+            <td th:text="${shoesInCard?.shoes?.brand?.name}"></td>
+            <td th:text="${shoesInCard?.shoes?.gender?.name}"></td>
+            <td th:text="${shoesInCard?.shoes?.season?.name}"></td>
+            <td th:text="${shoesInCard?.shoes?.shoesMaterial?.name}"></td>
+            <td th:text="${shoesInCard?.shoes?.shoesSize?.name}"></td>
+            <td><img th:src="@{${shoesInCard.shoes.path}}" th:height="110px" th:width="110px" alt=""></td>
+            <td th:text="${shoesInCard?.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+</div>
+
+</body>
+</html>

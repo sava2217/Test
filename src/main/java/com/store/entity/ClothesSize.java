@@ -1,39 +1,57 @@
 
 package com.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class ClothesSize extends AbstractEntity{
-    private String csName;
+public class ClothesSize {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
+
     @OneToMany(mappedBy = "clothesSize")
-    private List<Clothes> clothesList = new ArrayList<>();
+    private List<Clothes> clothes = new ArrayList<>();
 
     public ClothesSize() {
-
     }
 
-    public ClothesSize(String csName, List<Clothes> clothesList) {
-        this.csName = csName;
-        this.clothesList = clothesList;
+    public ClothesSize(String name, List<Clothes> clothes) {
+        this.name = name;
+        this.clothes = clothes;
     }
 
-    public String getcsName() {
-        return csName;
+    public Long getId() {
+        return id;
     }
 
-    public void setcsName(String csName) {
-        this.csName = csName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public List<Clothes> getClothesList() {
-        return clothesList;
+    public String getName() {
+        return name;
     }
 
-    public void setClothesList(List<Clothes> clothesList) {
-        this.clothesList = clothesList;
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Clothes> getClothes() {
+        return clothes;
+    }
+
+    public void setClothes(List<Clothes> clothes) {
+        this.clothes = clothes;
+    }
+    @Override
+    public String toString() {
+        return "ClothesSize{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

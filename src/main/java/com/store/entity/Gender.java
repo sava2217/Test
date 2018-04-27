@@ -1,38 +1,57 @@
+
 package com.store.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Gender extends AbstractEntity{
-    private String gName;
+public class Gender {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String name;
 
     @OneToMany(mappedBy = "gender")
-    private List<Clothes> clothesList = new ArrayList<>();
+    private List<Clothes> clothes = new ArrayList<>();
 
     public Gender() {
-
-    }
-    public Gender(String bName, List<Clothes> clothesList){
-        this.gName = bName;
-        this.clothesList = clothesList;
     }
 
-    public String getbName() {
-        return gName;
+    public Gender(String name, List<Clothes> clothes) {
+        this.name = name;
+        this.clothes = clothes;
     }
 
-    public void setbName(String bName) {
-        this.gName = bName;
+    public Long getId() {
+        return id;
     }
 
-    public List<Clothes> getClothesList() {
-        return clothesList;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setClothesList(List<Clothes> clothesList) {
-        this.clothesList = clothesList;
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Clothes> getClothes() {
+        return clothes;
+    }
+
+    public void setClothes(List<Clothes> clothes) {
+        this.clothes = clothes;
+    }
+    @Override
+    public String toString() {
+        return "Gender{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                '}';
     }
 }

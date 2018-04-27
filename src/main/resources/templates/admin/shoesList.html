@@ -3,13 +3,13 @@
 <head>
     <title>Shoes</title>
     <meta charset="utf-8">
-    <!-- Latest compiled and minified CSS -->
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
-    <!-- jQuery library -->
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
-    <!-- Latest compiled JavaScript -->
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 </head>
 <body>
@@ -23,6 +23,75 @@
 <div class="container">
     <div>
         <h1>Shoes</h1>
+
+        <div class="col-3">
+            <form action="#" th:action="@{/admin/shoes}" method="GET" th:object="${filter}">
+                <div class="form-group row">
+                    <div>
+                        <label>Price</label><br>
+                        <div class="col-sm-2">
+                            <input th:field="*{min}" placeholder="Min"/>
+                        </div>
+                        <div class="col-sm-2">
+                            <input th:field="*{max}" placeholder="Max"/>
+                        </div>
+                        <br>
+                        <br>
+                        <br>
+                        <label>Colors</label><br>
+                        <th:block th:each="color : ${colorList}">
+                            <input type="checkbox" th:field="*{colorId}" th:value="${color.id}" th:text="${color.name}"
+                                   placeholder="Search"/>
+                        </th:block>
+                        <br>
+                        <br>
+                        <br>
+                        <label>Brand</label><br>
+                        <th:block th:each="brand : ${brandList}">
+                            <input type="checkbox" th:field="*{brandId}" th:value="${brand.id}" th:text="${brand.name}"
+                                   placeholder="Search"/>
+                        </th:block>
+                        <br>
+                        <br>
+                        <br>
+                        <label>ShoesSize</label><br>
+                        <th:block th:each="shoesSize : ${shoesSizeList}">
+                            <input type="checkbox" th:field="*{shoesSizeId}" th:value="${shoesSize.id}" th:text="${shoesSize.name}"
+                                   placeholder="Search"/>
+                        </th:block>
+                        <br>
+                        <br>
+                        <br>
+                        <label>ShoesMaterials</label><br>
+                        <th:block th:each="shoesMaterials : ${shoesMaterialsList}">
+                            <input type="checkbox" th:field="*{shoesMaterialsId}" th:value="${shoesMaterials.id}" th:text="${shoesMaterials.name}"
+                                   placeholder="Search"/>
+                        </th:block>
+                        <br>
+                        <br>
+                        <br>
+                        <label>Gender</label><br>
+                        <th:block th:each="gender : ${genderList}">
+                            <input type="checkbox" th:field="*{genderId}" th:value="${gender.id}" th:text="${gender.name}"
+                                   placeholder="Search"/>
+                        </th:block>
+                        <br>
+                        <br>
+                        <br>
+                        <label>Season</label><br>
+                        <th:block th:each="season : ${seasonList}">
+                            <input type="checkbox" th:field="*{seasonId}" th:value="${season.id}" th:text="${season.name}"
+                                   placeholder="Search"/>
+                        </th:block>
+                        <br>
+                        <br>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        <br/>
         <p>
             <a href="/admin/shoes/shoesEdit" th:href="@{/admin/shoes/shoesEdit}">Create</a>
         </p>
@@ -31,6 +100,11 @@
             <tr>
                 <th>Id</th>
                 <th>Color</th>
+                <th>Brand</th>
+                <th>Gender</th>
+                <th>Season</th>
+                <th>Shoes material</th>
+                <th>Shoes size</th>
                 <th>Description</th>
                 <th>Actions</th>
             </tr>
@@ -38,8 +112,17 @@
             <tbody>
             <tr th:each="shoes : ${shoesList}">
                 <td th:text="${shoes.id}"></td>
-                <td th:text="${shoes.description}"></td>
                 <td th:text="${shoes?.color?.name}"></td>
+                <td th:text="${shoes?.brand?.name}"></td>
+                <td th:text="${shoes?.gender?.name}"></td>
+                <td th:text="${shoes?.season?.name}"></td>
+                <td th:text="${shoes?.shoesMaterial?.name}"></td>
+                <td th:text="${shoes?.shoesSize?.name}"></td>
+                <td th:text="${shoes.description}"></td>
+                <td th:text="${shoes.price}"></td>
+                <td>
+                    <img th:src="@{${shoes.path}}" th:height="110px" th:width="110px" alt="">
+                </td>
                 <td>
                     <a href="/admin/shoes/shoesEdit/"
                        th:href="@{/admin/shoes/shoesEdit/__${shoes.id}__}">Edit</a>

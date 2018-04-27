@@ -33,6 +33,11 @@
         <div align="center" th:if="${param.error}">
             <p style="font-size: 20px; color: #FF1C19;">Email or Password invalid, please verify</p>
         </div>
+        <br>
+        <br>
+        <input type="checkbox" name="rememberMe" title=""/> <span>Remember me</span>
+        <br>
+        <br>
         <button class="btn btn-lg btn-primary btn-block" name="Submit" value="login" type="Submit"
                 th:text="Login"></button>
     </form>

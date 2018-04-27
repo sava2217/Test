@@ -44,6 +44,11 @@ public class LoginController {
         return "login";
     }
 
+    @RequestMapping("/403")
+    public String page403() {
+        return "403";
+    }
+
     @RequestMapping(value = "/registration", method = RequestMethod.GET)
     public ModelAndView registration() {
         ModelAndView modelAndView = new ModelAndView();
